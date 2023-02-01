@@ -33,59 +33,20 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{bbm}
-% 
-% \graphicspath{ {./Figs/} }
-% \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-
-% \usepackage{microtype}
-% \usepackage[dvipsnames]{xcolor}
-% \usepackage{pifont}% http://ctan.org/pkg/pifont
 \usepackage{latexsym}
-% \renewcommand{\UrlFont}{\ttfamily\small}
-% \usepackage{balance}
-% \usepackage{helvet}  %Required
-% \usepackage{courier}  %Required
 \usepackage{url}  %Required
 \usepackage{graphicx}  %Required
 \frenchspacing  %Required
-% \usepackage{algorithm}
-% \usepackage{algorithmic}
-% \usepackage{amsthm}
-% \usepackage{multirow}
-% \usepackage{pgffor}
-% \usepackage{graphicx}
-% \usepackage{epstopdf}
-% \usepackage{tikz}
-% \usepackage{epstopdf}
-% \usepackage{mathtools}
-% \usepackage{enumitem}
-% \usepackage{tabulary}
-% \usepackage{color}
 \usepackage{url}
-% \usepackage{flushend}
-% \usepackage{stfloats}
-% \usepackage{tcolorbox}
-% \usepackage[utf8]{inputenc}
-% \usepackage{tabularx}
-% \usepackage{CJKutf8}
-% \usepackage{microtype}
-% \usepackage{textcomp}
 \usepackage{booktabs}
 \usepackage{array}
-% \usepackage{colortbl}
-% \usepackage{soul}
-% \usepackage{arydshln}
-% \usepackage{natbib}
-% \usepackage{appendix}
-% \usepackage{xspace}
-% \usepackage{microtype}
-% \usepackage{balance}
-% \usepackage{flushend}
 \renewcommand{\UrlFont}{\ttfamily\small}
 
-\usepackage[acronym,nomain]{glossaries}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makeglossaries
+\renewcommand*{\glsgroupskip}{}
 
 \input{acronyms_en}
 
@@ -589,6 +550,8 @@ First, none of our semantic methods distinguished between different kinds of wor
 This might uncover evidence for a shift from an ontological to a more methodological coordination between the subcultures of high-energy physics, as the arguments for supersymmetry and string theory as ``tools'' rather than accurate accounts of the natural world suggest.
 
 Another direction of future work involve the topic model approach. Although the topic model used in this work yielded seemingly acceptable results overall, some topics were difficult to interpret. In that respect, we made several improvements compared to previous works, by training the model on not just single words but also n-grams matching specific and presumably semantically informative syntactic patternsand by informing our interpretation of topics using correlations with a standard classification (rather than the top-words only). Yet, further improvements could be made. First, vocabulary selection could be enhanced by a better handling of mathematical expressions, for instance by parsing LaTeX formulas. The NLTK library picked up some of these expressions, and since they captured some information about the documents, we did not exclude them from the vocabulary; however, this way of proceeding does not preserve the underlying mathematical structure, although it may be valuable to distinguish references to, say, specific particles, or certain symmetry groups, based on their mathematical notations. We may also want the model to learn to discard uninformative words such as ``result'', ``parameter'', ``model'', etc.. In our case, we found such vague words to be clustered in three topics that we labeled as ``jargon'' which correlated very poorly with the standard classification  (see Tables \ref{table:top_words} and \ref{table:full_topics_pacs_pmi}), but they should ideally not emerge as distinct topics on \textit{par} with more meaningful topics. To this end, we may want to build on \citealt{syntax_topic_model}, which provides a model that is able to distinguish between ``semantic'' and purely ``syntactic'' clusters of words without  prior knowledge of the language. A more critical limitations of topic models pertains to the challenge of hyper-parameters' tuning, considering it is unclear which performance metric should be maximized in the process. Although we proposed a procedure for choosing these parameters that accounts for known limitations to the reliability of perplexity or topic coherence metrics, non-parametric methods may provide a better answer to this fundamental issue \citep{Gerlach2018}.
+
+\printglossary[type=\acronymtype,title=List of abbreviations]
 
 % As we have framed this issue in terms of Galison's notion of trading zone, we would like to address two potential objections against its applicability to the case of supersymmetry. A first objection could be that supersymmetry has a precise meaning in the technical language of quantum field theory that is presumably shared by both the theorists and the phenomenologists, such that there is no problem of communication between the two groups and therefore one should speak of ``trades'' rather than of a ``trading zone'' \citep[p.~8]{Collins2010}. However this omits the fact that the task of deriving viable phenomenological models from supersymmetry tooks years, and that the abstract seminal work on supersymmetry did not enter the experimental practice seamlessly. Instead, this required the elaboration of a new jargon that was well captured by our topic model (see the topic ``phenomenological supersymmetry and superpartners'', Table \ref{table:top_words}). Another objection against the applicability of Galison's framework is that the example of supersymmetry does not contradict a reductionist form of unity within the field -- the very reductionist picture that Galison aims to disprove --, in the sense that phenomenological models follow from the theoretical requirement of supersymmetry -- as prescribed by superstring theory for instance. However, phenomenologists enjoy considerable freedom in the way they may implement supersymmetry in their models: supersymmetry itself is phenomenologically poorly constraining\footnote{As \citet{Borrelli2012} puts it, ``there is no ‘‘theory of supersymmetry’’,
 % but only a number of different supersymmetric models''.}, to such an extent that supersymmetry cannot ever be ruled out. Conversely, even if evidence was found for the superiority of supersymmetric phenomenological models, this would not establish the supersymmetric nature of our world in itself, since, arguably, alternative models may have similar empirical success; to hold such a strong belief would require some prior readiness to ``accept'' supersymmetry, on non-empirical grounds -- e.g., because if fits so well the theorists' intellectual enterprise\footnote{Let us insist here that we do not mean that, if evidence was found for supersymmetric models, any claim for or against ``supersymmetry'' would be equally viable. It would then be silly to disregard the success of these models. }. In other words, there is no one-to-one mapping between the phenomenologists' supersymmetric models and the theorist's supersymmetry requirement. That the former provides evidence for the latter, or that the latter ``predicts'' the former is a matter of negociation (or trade) between these two theoretical cultures, rather than a matter of logical deduction. Even if one is not willing to concede this point, the case of supersymmetry shows that what drives theoretical progress may not drive phenomenlogical progress, which is already a form of disunity. 
