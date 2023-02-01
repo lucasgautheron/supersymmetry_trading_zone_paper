@@ -1,0 +1,5 @@
+[submodule "trading_zones_material"]
+	path = trading_zones_material
+	url = git@gin.g-node.org:/lucasgautheron/trading_zones_material.git
+	datalad-id = 3a7227ea-d9a3-41bc-ae19-206924e5a311
+	datalad-url = git@gin.g-node.org:/lucasgautheron/trading_zones_material.git
