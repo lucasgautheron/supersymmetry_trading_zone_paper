@@ -26,5 +26,5 @@ clean:
 	rm -rf rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk texput.log *-eps-converted-to.pdf
 	rm -rf Fig*.pgf
 	rm -rf Table*.tex
-	datalad drop trading_zones_material/plots
-	datalad drop trading_zones_material/tables
+	datalad drop trading_zones_material/plots/*.pgf
+	datalad drop trading_zones_material/tables/*.tex
