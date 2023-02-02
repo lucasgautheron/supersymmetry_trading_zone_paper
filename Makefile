@@ -1,6 +1,6 @@
 all: main.pdf
 
-main.pdf: Fig*.pgf Table*.tex
+main.pdf: main.tex references.bib Fig*.pgf Table*.tex
 	latexmk -pdf main.tex
 
 Fig*.pgf:
@@ -23,7 +23,7 @@ Table*.tex:
 	cp -L trading_zones_material/tables/topic_pacs_validation.tex Table5.tex
 
 clean:
-	rm -rf rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk texput.log *-eps-converted-to.pdf
+	rm -rf rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk main.ist texput.log *-eps-converted-to.pdf
 	rm -rf Fig*.pgf
 	rm -rf Table*.tex
 	datalad drop trading_zones_material/plots/*.pgf
