@@ -544,6 +544,14 @@ Another direction of future work involves the topic model approach. Although the
 We would like to thank Olivier Darrigol for his extremely insightful comments regarding the concept of trading zones; Arianna Borrelli for commenting on the work that led to this publication; Thomas Heinze and  Radin Dardashti for their comments and continuous support; Alexander Blum for his consideration and his suggestions; and Elizabeth Zanghi for her corrections.
 \end{acknowledgements}
 
+\section*{Conflicts of interest}
+
+The authors declare that they have no conflicts of interest.
+
+\section*{Data availability}
+
+All the data and code used to derive the results of this paper can be accessed from the following repository using the DataLad software \citep{datalad_paper}: \url{https://gin.g-node.org/lucasgautheron/trading_zones_material}. Upon publication, the repository will be archived and a DOI will be included in the present paper.
+
 \bibliographystyle{spbasic}
 \bibliography{references}
 
@@ -553,11 +561,6 @@ We would like to thank Olivier Darrigol for his extremely insightful comments re
 
 \section{Appendices}
 \label{section:appendix}
-
-\subsection{Data/code access}
-\label{appendix:data_access}
-
-All the data and code used to derive the results of this paper can be accessed from the following url using the DataLad software \citep{datalad_paper}: \url{https://gin.g-node.org/lucasgautheron/trading_zones_material}. Upon publication, the repository will be archived and a DOI will be included in the present paper.
 
 \subsection{Data collection}
 \label{appendix:collection}
@@ -590,7 +593,7 @@ As a result of this procedure, the vocabulary contains $V=$ 18,658 ``words'', wi
 
 \subsubsection{\label{appendix:hyper_parameter}Hyper-parameters}
 
-The implementation of CTM by Tomotopy has three hyper-parameters: the amount of topics $k$, an $\vec{\alpha}$ parameter that controls the sparsity of the document-topic distribution ($\theta_{d,i}$), and a $\vec{\eta}$ parameter that controls the sparsity of the topic-word distribution (the vocabulary associated to each topic).
+The implementation of the CTM by Tomotopy \citep{tomotopy} has three hyper-parameters: the amount of topics $k$, an $\vec{\alpha}$ parameter that controls the sparsity of the document-topic distribution ($\theta_{d,i}$), and a $\vec{\eta}$ parameter that controls the sparsity of the topic-word distribution (the vocabulary associated to each topic).
 For choosing the amount of topics $k$, we considered three values that seemed acceptable in terms of interpretability and compliance with the values from the literature: 50, 75 and 100.
 We assumed $\vec{\alpha}$ and $\vec{\eta}$ to be symmetric, i.e. $\alpha_1 = \alpha_k = \alpha$ and $\eta_1 = ... = \eta_V = \eta$\footnote{This is common in the literature, but this choice is disputable, cf. \citealt{Wallach2009}. One implication of symmetric priors is that topics must have comparable probabilities. This also has an impact of the meaning of topics.}. We considered  $\alpha \in \{10^{-2},10^{-1},1\}$ and $\eta \in \{10^{-3},10^{-2},10^{-1}\}$, according to values encountered in the literature.
 We then trained the model for each triplet of $k$, $\alpha$ and $\eta$ among the candidate values. We rejected all triplets that led to significant overfitting, by comparing the perplexity\footnote{Perplexity is the exponential of the average log-likelihood per word, cf. \citealt{Blei2003}. It measures the improbability of a corpus according to a given model.} obtained for the training corpus and that obtained by applying the trained model to a validation set of abstracts unseen during training.
