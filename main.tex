@@ -359,7 +359,7 @@ What about the ``demographic component'' of the divide between theory and phenom
 Figure \ref{fig:ternary_categories} is a ternary diagram in which each red dot represents a physicist and is positioned according to the relative prevalence of each category (among experiment, phenomenology and theory) among the papers they authored or co-authored. The majority of the dots are clustered near vertices, which means that most physicists dedicate themselves to mostly one of these categories. In particular, the inner part of the ternary diagram, which corresponds to physicists with balanced contributions to each category, is almost empty. We do find that some authors are scattered along the experiment-phenomenology edge and the phenomenology-theory edge; still, our results suggest that the category of phenomenology does feature a ``demographic'' counterpart as well, although it is more porous than experiment or pure theory. Therefore, phenomenologists do, to some extent, constitute a social group distinct from that of theorists; however, phenomenology seems to play a special role in sustaining some form of cooperation between experimentalists and theorists. Overall, we find that 81\% of high-energy physicists publish more than 80\% of their papers in just one of these categories, which is clear evidence of specialization.
 
 \begin{figure*}
-    \centering\input{Fig2.pgf}
+    \centering\includegraphics{Fig2.eps}
     \caption{\textbf{Relative fraction of articles from any of the categories ``Experiment'', ``Phenomenology'' and ``Theory'', for 2,500 \gls{hep} physicists.} Each physicist among those sampled is represented by a red dot on the diagram, positioned according to the estimate of $(p_{i,exp},p_{i,ph},p_{i,th})$, the probability that any of his articles belong to those three categories. The dashed lines, along the direction of the arrows, form a grid along which one can read the relative importance of each category for every physicist  ($p_{ij}\over \sum_{k}p_{ik}$). Physicists near the vertices of the triangle contribute almost exclusively to one category; those near an edge contribute quasi-exclusively to two categories. Most physicists are located near a vertex, thus contributing to mostly one category.}
     \label{fig:ternary_categories}
 \end{figure*}
@@ -398,14 +398,14 @@ Moreover, although all these words (``supersymmetry'', ``supersymmetric'' and ``
 % The fact that these terms may occur in different contexts is well summarised by Figure \ref{fig:susy_terms_cats}, which shows the origins of articles that contain these terms according to the categories ``Theory'', ``Phenomenology'', and ``Experiment''.
 \begin{figure*}
     \centering
-    \input{Fig3.pgf}
+    \includegraphics{Fig3.eps}
     \caption{\textbf{The many uses of supersymmetry}. For three terms $w$ refering to supersymmetry (``supersymmetric'', ``supersymmetry'', and ``susy''), the five topics $z$ that are most likely to have led to their occurrence and their respective conditional probability $P(z|w)$ are shown. ``Supersymetry'' and ``supersymmetric'' have similar distributions, and mostly occur within theoretical topics. ``Susy'''s topic distribution is much more peaked, and most often occurs within phenomenological topics.}
     \label{fig:susy_usages}
 \end{figure*}
 
 % \begin{figure*}
 %     \centering
-%     \input{figures/analyses/terms_cats_english.pgf}
+%     \includegraphics{figures/analyses/terms_cats_english.eps}
 %     \caption{\textbf{Categories of articles that contain specific terms refering to supersymmetry}. The plot represents the proportion of articles that belong to each of the categories ``Theory'', ``Phenomenology'' and ``Experiment'', depending on whether they contain any of the terms ``supersymmetric'', ``supersymmetry'', and ``susy'' in their title or abstract. Again, ``supersymmetric'' and ``supersymmetry'' mostly occur in theoretical papers, while ``susy'' more often occurs in phenomenological papers. The difference in the topics associated with the keyword ``supersymmetry'' and ``susy'' reflects the theoretical/phenomenological divide previously described.
 %      }
 %     \label{fig:susy_terms_cats}
@@ -415,7 +415,7 @@ That these topics are at least partially independent can be assessed by inspecti
 
 \begin{figure*}
     \centering
-    \hspace*{-2em}\input{Fig4.pgf}
+    \hspace*{-2em}\includegraphics{Fig4.eps}
     \caption{\textbf{Correlation between the topics most associated to supersymmetry}. The Pearson correlation is comprised between -1 (perfect anti-correlation) and 1 (perfect correlation). A correlation close to 0 means that a pair of topic is partially independent, i.e. that they can arise or not in variable proportions in a paper.}
     \label{fig:susy_correlations}
 \end{figure*}
@@ -433,7 +433,7 @@ Where $D_y$ is the amount of articles first submitted in year $y$. We then selec
 
 \begin{figure*}
     \centering
-    \input{Fig5.pgf}
+    \includegraphics{Fig5.eps}
     \caption{\textbf{Cold and hot topics among those that mention supersymmetry since the first results of the LHC (2011-2019).} On the left, the three coldest topics are ``Supersymmetric particles'', ``Higgs sector beyond the SM'' and ``Higgs boson''. On the right, the three hottest topics are ``Supergravity'', ``Amplitudes and Feynman Diagrams'', ``Conformal Field Theory''.}
     \label{fig:hot_cold_topics_hep_2011_2019_susy}
 \end{figure*}
@@ -465,14 +465,14 @@ Where do trading zones occur within \gls{hep}? As discussed in the Method sectio
 
 \begin{figure}
     \centering
-    \input{Fig6.pgf}
+    \includegraphics{Fig6.eps}
     \caption{\textbf{Inside the trading zone: probability that certain keywords appear in the abstract of a theoretical paper involved in a trade (a phenomenological paper citing a theoretical paper).} To the left, the five keywords are those with the highest peak probability of occurrence; to the right, are the five keywords with the highest probability of occurrence among supersymmetry related keywords. Redundant keywords (which normalized pointwise mutual information with a more frequent keyword $>$ 0.9) are excluded.} 
     \label{fig:cross_citations_probs_th_ph}
 \end{figure}
 
 \begin{figure}
     \centering
-    \input{Fig7.pgf}
+    \includegraphics{Fig7.eps}
     \caption{\textbf{Inside the trading zone: probability that certain keywords appear in the abstract of a phenomenological paper involved in a trade (a theoretical paper citing a phenomenological paper).} To the left, the five keywords are those with the highest peak probability of occurrence; to the right, are the five keywords with the highest probability of occurrence among supersymmetry related keywords. Redundant keywords (which normalized pointwise mutual information with a more frequent keyword $>$ 0.9) are excluded.} 
     \label{fig:cross_citations_probs_ph_th}
 \end{figure}
@@ -485,7 +485,7 @@ The magnitude of the observed variations suggests that the frequency of trades m
 
 \begin{figure}
     \centering
-    \input{Fig8.pgf}
+    \includegraphics{Fig8.eps}
     \caption{\textbf{Probability of trades between theoretical subcultures.} $P(\text{trade})$ is evaluated as the fraction of citations involving certain trades (phenomenological papers citing theoretical papers in blue, theoretical papers citing phenomenological papers in orange) among all citations involving only theoretical or phenomenological papers.} 
     \label{fig:cross_dynamics}
 \end{figure}
@@ -652,7 +652,7 @@ We then normalize $n_{ij}$ by the amount of citations \textit{from} category $i$
 
 \begin{figure*}
     \centering
-    \input{Fig9.pgf}
+    \includegraphics{Fig9.eps}
     \caption{\textbf{Origin of the references (citations) in the \gls{hep} literature}
     Each matrix element $\tilde{n}_{ij}$ represents the fraction of references from the x-axis category (columns) that target papers from the y-axis category (lines). For instance, 49\% of references in experimental papers refer to experimental papers. 22\% of citations from phenomenological papers refer to experimental papers. If these categories were completely hermetic, the matrix would equal the identity matrix, which is not the case.}
     \label{fig:cites_matrix}
