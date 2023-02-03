@@ -6,14 +6,22 @@ main.pdf: main.tex references.bib Fig*.pgf Table*.tex
 Fig*.pgf:
 	datalad get trading_zones_material/plots
 	cp -L trading_zones_material/plots/social_divide_ternary.pgf Fig2.pgf
+	cp -L trading_zones_material/plots/social_divide_ternary.eps Fig2.eps
 	cp -L trading_zones_material/plots/susy_usages.pgf Fig3.pgf
+	cp -L trading_zones_material/plots/susy_usages.eps Fig3.eps
 	cp -L trading_zones_material/plots/susy_correlations.pgf Fig4.pgf
+	cp -L trading_zones_material/plots/susy_correlations.eps Fig4.eps
 	cp -L trading_zones_material/plots/susy_correlations*.png ./
 	cp -L trading_zones_material/plots/hot_cold_topics_hep_2011_2019_susy.pgf Fig5.pgf
+	cp -L trading_zones_material/plots/hot_cold_topics_hep_2011_2019_susy.eps Fig5.eps
 	cp -L trading_zones_material/plots/trading_zone_0_1.pgf Fig6.pgf
+	cp -L trading_zones_material/plots/trading_zone_0_1.eps Fig6.eps
 	cp -L trading_zones_material/plots/trading_zone_1_0.pgf Fig7.pgf
+	cp -L trading_zones_material/plots/trading_zone_1_0.eps Fig7.eps
 	cp -L trading_zones_material/plots/trades.pgf Fig8.pgf
+	cp -L trading_zones_material/plots/trades.eps Fig8.eps
 	cp -L trading_zones_material/plots/cites_matrix.pgf Fig9.pgf
+	cp -L trading_zones_material/plots/cites_matrix.eps Fig9.eps
 	cp -L trading_zones_material/plots/cites_matrix*.png ./
 
 Table*.tex:
@@ -27,4 +35,5 @@ clean:
 	rm -rf Fig*.pgf
 	rm -rf Table*.tex
 	datalad drop trading_zones_material/plots/*.pgf
+	datalad drop trading_zones_material/plots/*.eps
 	datalad drop trading_zones_material/tables/*.tex
