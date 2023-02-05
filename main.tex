@@ -481,7 +481,7 @@ Both these figures show the probability of occurrence of the five most common ke
 
 The magnitude of the observed variations suggests that the frequency of trades may have itself significantly varied. In order to verify this, we compute the overall trade probability $P(\text{trade})$\footnote{For instance, the frequency of phenomenology$\to$theory trades is defined as: \begin{equation}
     P(\text{trade})_{\text{ph}\to\text{th}} = \dfrac{\# \text{phenomenology}\to\text{theory citations}}{\# \text{phenomenology}\to\text{theory citations}  + \# \text{theory}\to\text{theory citations} }
-\end{equation}} as the fraction of trades among all these edges of the subset of the citation graph under considerationg (limited to theoretical/phenomenological papers). The results are shown in Figure \ref{fig:cross_dynamics}. They demonstrate that phenomenology has become relatively much less reliant on theory since 2001, as $P(\text{trade})$ has decreased from 13\% down to 7\% --- in other words, the trading zone has shrinked. A significant portion of the decrease seems to be imputable to the start of the \gls{lhc} in 2010. Theory seems more self-reliant overall and rather unaffected by the effect of the \gls{lhc}. This suggests the \gls{lhc} has contributed to further decouple these two subcultures, even though ``theory'' was itself already rather autonomous prior to its start.
+\end{equation}} as the fraction of trades among all these edges of the subset of the citation graph under considerationg (limited to theoretical/phenomenological papers). The results are shown in Figure \ref{fig:cross_dynamics}. They demonstrate that phenomenology has become relatively much less reliant on theory since 2001, as $P(\text{trade})$ has decreased from 13\% down to 7\% --- in other words, the trading zone has shrinked. A significant part of the decrease seems to be concomitant with the start of the \gls{lhc} in 2010. Theory seems more self-reliant overall and rather unaffected by the effect of the \gls{lhc}. This suggests the \gls{lhc} has contributed to further decouple these two subcultures, even though ``theory'' was itself already rather autonomous prior to its start.
 
 \begin{figure}
     \centering
@@ -489,6 +489,8 @@ The magnitude of the observed variations suggests that the frequency of trades m
     \caption{\textbf{Probability of trades between theoretical subcultures.} $P(\text{trade})$ is evaluated as the fraction of citations involving certain trades (phenomenological papers citing theoretical papers in blue, theoretical papers citing phenomenological papers in orange) among all citations involving only theoretical or phenomenological papers.} 
     \label{fig:cross_dynamics}
 \end{figure}
+
+The decrease in imports of theoretical ideas in phenomenological papers may have a variety of roots. It might be result from a shift in phenomenological practice while theoretical practice itself remained unchanged. Or it could be that theoretical practice shifted in a way unlikely to sustain trades with phenomenologists. In order to verify these two hypotheses it is useful to estimate the likelihood of trades as a function of two variables: the year of publication of the cited papers, and the year of publication of the citing paper.
 
 
 \section{\label{section:discussion}Discussion}
@@ -657,6 +659,19 @@ We then normalize $n_{ij}$ by the amount of citations \textit{from} category $i$
     Each matrix element $\tilde{n}_{ij}$ represents the fraction of references from the x-axis category (columns) that target papers from the y-axis category (lines). For instance, 49\% of references in experimental papers refer to experimental papers. 22\% of citations from phenomenological papers refer to experimental papers. If these categories were completely hermetic, the matrix would equal the identity matrix, which is not the case.}
     \label{fig:cites_matrix}
 \end{figure*}
+
+\subsection{\label{appendix:trading_zone_years}Trading zone between two evolving cultures}
+
+As one examines trades between two scientific cultures or disciplines, it is important to keep in mind that these are undergoing constant transformations. As a result, that a, say, phenomenological paper (published at a year $y_i$) cites a theoretical paper (published at a year $y_j\leq y_i$) does not establish a connection between these cultures in general but between these cultures as they existed at those specific times. In order to locate trades between subcultures of a field it can thus be useful to examine their intensity as a function of not just the year of publication of the papers citing other work, but also as a function of the papers being cited. The results for trades between the theoretical and phenomenological subcultures are shown in Figure \ref{fig:trading_zone_years}.
+
+\begin{figure*}
+    \centering
+    \includegraphics{Fig10.eps}
+    \caption{\textbf{Intensity of trades as a function of the year of publication of the cited paper (x-axis) and of the citing paper (y-axis).}
+    The upper matrix shows the probability of trades that consist in citations of theoretical papers that originate from phenomenological paper. The lower matrix shows the probability of trades that consist in citations of phenomenological papers originating from theoretical papers.}
+    \label{fig:trading_zone_years}
+\end{figure*}
+
 
 
 %TC:endignore
