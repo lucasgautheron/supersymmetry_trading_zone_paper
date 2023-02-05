@@ -23,7 +23,8 @@ Fig*.pgf:
 	cp -L trading_zones_material/plots/cites_matrix.pgf Fig9.pgf
 	cp -L trading_zones_material/plots/cites_matrix.eps Fig9.eps
 	cp -L trading_zones_material/plots/cites_matrix*.png ./
-
+	cp -L trading_zones_material/plots/trading_zone_years.eps Fig10.eps
+	
 Table*.tex:
 	datalad get trading_zones_material/tables
 	cp -L trading_zones_material/tables/specific_vocabulary_th_ph.tex Table2.tex
