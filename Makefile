@@ -12,10 +12,8 @@ Fig*.pgf:
 	cp -L trading_zones_material/plots/hot_cold_topics_hep_2011_2019_susy.eps Fig5.eps
 	cp -L trading_zones_material/plots/trading_zone_0_1.eps Fig6.eps
 	cp -L trading_zones_material/plots/trading_zone_1_0.eps Fig7.eps
-	cp -L trading_zones_material/plots/trades.eps Fig8.eps
-	cp -L trading_zones_material/plots/cites_matrix.eps Fig9.eps
+	cp -L trading_zones_material/plots/cites_matrix.eps Fig8.eps
 	cp -L trading_zones_material/plots/cites_matrix*.png ./
-	cp -L trading_zones_material/plots/trading_zone_years.eps Fig10.eps
 	
 Table*.tex:
 	datalad get trading_zones_material/tables
