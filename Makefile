@@ -3,6 +3,11 @@ all: main.pdf
 main.pdf: main.tex references.bib Fig*.pgf Table*.tex
 	latexmk -pdf main.tex
 
+diff: references.bib Fig*.pgf Table*.tex
+	git show 5bca42a4a00517fa852fdda9f4d89110cb1ea876:main.tex > first_submission.tex
+	latexdiff first_submission.tex main.tex > diff.tex
+	latexmk -pdf diff.tex
+
 Fig*.pgf:
 	datalad get trading_zones_material/plots
 	cp -L trading_zones_material/plots/social_divide_ternary.eps Fig2.eps
@@ -22,7 +27,7 @@ Table*.tex:
 	cp -L trading_zones_material/tables/topic_pacs_validation.tex Table5.tex
 
 clean:
-	rm -rf rm -f main.bbl main.aux main.blg main.log main.out main.pdf main.tdo main.fls main.fdb_latexmk main.ist texput.log *-eps-converted-to.pdf
+	rm -rf rm -f *.bbl *.aux *.blg *.log *.out *.pdf *.tdo *.fls *.fdb_latexmk *.ist *-eps-converted-to.pdf
 	rm -rf Fig*.pgf
 	rm -rf Table*.tex
 	datalad drop trading_zones_material/plots/*.pgf
