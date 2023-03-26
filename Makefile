@@ -23,6 +23,7 @@ Fig*.pgf:
 Table*.tex:
 	datalad get trading_zones_material/tables
 	cp -L trading_zones_material/tables/specific_vocabulary_th_ph.tex Table2.tex
+	cp -L trading_zones_material/tables/specific_vocabulary_exp_ph.tex Table3.tex
 	cp -L trading_zones_material/tables/top_words.tex Table4.tex
 	cp -L trading_zones_material/tables/topic_pacs_validation.tex Table5.tex
 
