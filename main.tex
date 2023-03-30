@@ -608,16 +608,17 @@ The rationale for this method is that good scores should only be achievable prov
 \fontsize{6}{7}\selectfont\input{Table4}\normalsize
 \fontsize{6}{7}\selectfont\input{Table5}\normalsize
 
-\subsubsection{Topics and their correlation with categories}
+\subsubsection{\label{appendix:topics_categories}Topics and their correlation with categories}
 
-Below, we evaluate how topics compare with the classification of the literature. For that, we generated a 2D representation of the semantic space by applying t-SNE on the distance matrix $1-R_{ij}$ where $R_{ij}$ is the correlation matrix for the 75 topics of the topic model. The t-SNE transformation aims to preserve distances, such that highly correlated topics should appear close on the map. We then colored each topic according to the category (among theory, phenomenology and experiment) that had the highest average contribution for this topic. Topics related to supersymmetry are labeled.
+Below, we evaluate how topics compare with the classification of the literature. For that, we generated a 2D representation of the semantic space by applying a t-SNE transformation on the distance matrix $1-R_{ij}$, where $R_{ij}$ is the correlation matrix for the 75 topics from the CTM. The t-SNE transformation aims to preserve distances, such that highly correlated topics should appear close on the map. We then colored each topic according to the category (among theory, phenomenology and experiment) that had the highest average contribution for this topic. The graph is rotated such that the x-axis explains most of the variance in these three categories. Topics related to supersymmetry are emphasized and labeled. The resulting map is shown in Figure \ref{fig:tsne}.
 
 \begin{figure}
-\includegraphics[]{Fig8.eps}
-\caption{\label{fig:tsne}Semantic map extracted from the topic model using t-SNE transformation. Each dot represents a topic.}
+\centering
+\includegraphics[width=\textwidth]{Fig8.eps}
+\caption{\label{fig:tsne}Semantic map extracted from the topic model using t-SNE transformation. Each dot represents a topic. Each topic is assigned the category, among theory, phenomenology and experiment, that is most associated with it. Correlated topics appear closer to each other.}
 \end{figure}
 
-Although the t-SNE transformation does not yield very stable results, it appears that: i) topics most associated with each category are generally closer, in other words these three poles explain part of the variance in the semantic space; and ii) the distinction between phenomenological supersymmetry and theoretical supersymmetry appears as two separate clusters of supersymmetry-related topics in this representation.
+Although the t-SNE transformation does not yield very stable results, it appears in this figure that topics most associated with each category are generally closer, such that these three poles explain part of the variance in the semantic space. Second, in this representation, the distinction between phenomenological supersymmetry and theoretical supersymmetry appears is supported by the emergence of two separate clusters of supersymmetry-related topics.
 
 
 \subsection{\label{appendix:phenomenology_centrality}Validity of the citation network for exploring the trading zone}
