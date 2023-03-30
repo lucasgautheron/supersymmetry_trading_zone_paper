@@ -440,7 +440,7 @@ In order to understand these dynamics, it is therefore necessary to distinguish 
 % The [\dots] minimal supersymmetric standard model (MSSM) no longer seems relevant, as well as the very idea of low-energy supersymmetry [...]. Basically, experimental data from CERN (or, better to say, their absence) ruled MSSM out. [...] The second face of SUSY – supersymmetry as a tool for exploring gauge dynamics at strong coupling – which started emerging in the early 1980s [10] is taking precedence over phenomenology. (\citealt[p.~7--8]{Shifman2020})
 % \end{quote}
 
-Shifman's assessment strikingly converges with the patterns that emerge from our analysis. Topic models reveal the plurality of supersymmetry in high-energy physics. They support that supersymmetry arises in different contexts, some theoretical and others phenomenological. They allowed us to demonstrate that these ``faces'' of supersymmetry have responded differently to the absence of evidence for supersymmetric particles at the \gls{lhc}. Indeed, although the phenomenologists find supersymmetry to be much less valuable in the light of the most recent experimental findings, theorists may still rely on it for their own endeavor. This supports that cultures can ``trade'' certain concepts (according to Galison's terminology) while retaining much of their autonomy, including in their own appraisal of the usefulness of these concepts\footnote{``trading partners can hammer out a local coordination, despite vast global differences.'' \citep[p.~783]{galison1997image}}. 
+Shifman's assessment strikingly converges with the patterns that emerge from our analysis. Topic models reveal the plurality of supersymmetry in high-energy physics. They support that supersymmetry arises in different contexts, some theoretical and others phenomenological. They allowed us to demonstrate that these ``faces'' of supersymmetry have responded differently to the absence of evidence for supersymmetric particles at the \gls{lhc}. Indeed, although phenomenologists find supersymmetry to be much less valuable in the light of the most recent experimental findings, theorists may still rely on it for their own endeavor. This supports that cultures can ``trade'' certain concepts (according to Galison's terminology) while retaining much of their autonomy, including in their own appraisal of the usefulness of these concepts\footnote{``trading partners can hammer out a local coordination, despite vast global differences.'' \citep[p.~783]{galison1997image}}. 
 
 In the next section, we investigate the contribution of supersymmetry to sustaining the trading zone between these theoretical traditions throughout time.
 
@@ -600,7 +600,6 @@ Then, we submitted the lists of PACS categories thus constitued to a human task 
 
 The rationale for this method is that good scores should only be achievable provided the topics are rather coherent, and that the document-topic distributions $\theta_{d,i}$ are reasonably accurate. The final average score is 0.74 for 100 guesses from two HEP PhD students, which is significantly better than a random baseline (0.5). This shows that, to some extent, the topic distributions derived for each article correlate with \gls{pacs} categories that are rather coherent with each other.
 
-
 \subsubsection{Topics}
 
 % \clearpage
@@ -609,7 +608,18 @@ The rationale for this method is that good scores should only be achievable prov
 \fontsize{6}{7}\selectfont\input{Table4}\normalsize
 \fontsize{6}{7}\selectfont\input{Table5}\normalsize
 
-\subsection{\label{appendix:phenomenology_centrality}Citation network and the trading zone}
+\subsubsection{Topics and their correlation with categories}
+
+Below, we evaluate how topics compare with the classification of the literature. For that, we generated a 2D representation of the semantic space by applying t-SNE on the distance matrix $1-R_{ij}$ where $R_{ij}$ is the correlation matrix for the 75 topics of the topic model. The t-SNE transformation aims to preserve distances, such that highly correlated topics should appear close on the map. We then colored each topic according to the category (among theory, phenomenology and experiment) that had the highest average contribution for this topic. Topics related to supersymmetry are labeled.
+
+\begin{figure}
+\includegraphics[]{Fig8.eps}
+\caption{\label{fig:tsne}Semantic map extracted from the topic model using t-SNE transformation. Each dot represents a topic.}
+\end{figure}
+
+Although the t-SNE transformation does not yield very stable results, 
+
+\subsection{\label{appendix:phenomenology_centrality}Validity of the citation network for exploring the trading zone}
 
 Below, we support the relevance of the citation network as a means of exploring trading zones between scientific cultures by showing it can be used to recover known facts, in particular i) that theory and experiment in HEP do not communicate directly and ii) that phenomenology channels most exchanges across them.
 
@@ -625,7 +635,7 @@ We then normalize $n_{ij}$ by the amount of citations \textit{from} category $i$
 
 \begin{figure*}
     \centering
-    \includegraphics{Fig8.eps}
+    \includegraphics{Fig9.eps}
     \caption{\textbf{Origin of the references (citations) in the \gls{hep} literature}
     Each matrix element $\tilde{n}_{ij}$ represents the fraction of references from the x-axis category (columns) that target papers from the y-axis category (lines). For instance, 41\% of references in experimental papers refer to experimental papers. 15\% of citations from phenomenological papers refer to experimental papers. If these categories were completely hermetic, the matrix would equal the identity matrix, which is not the case.}
     \label{fig:cites_matrix}
