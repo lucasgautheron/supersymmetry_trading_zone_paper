@@ -80,7 +80,7 @@
  Lucas Gautheron \\   \email{lucas.gautheron@gmail.com}\\ORCID: 0000-0002-3776-3373\\\\
  Elisa Omodei \\   \email{omodeie@ceu.edu}\\ORCID: 0000-0002-6748-5124\\\\
  \affaddr{\affmark[1]Interdisciplinary Centre for Science and Technology Studies (IZWT), University of Wuppertal, Germany}\\
- \affaddr{\affmark[2]Université Paris-Cité, Paris, France}\\
+ \affaddr{\affmark[2]Sciences Po, médialab, Paris, France}\\
  \affaddr{\affmark[3]Department of Network and Data Science, Central European University, Vienna, Austria}
 }
 
@@ -321,7 +321,7 @@ In particular, we have chosen the Correlated Topic Model for its ability to capt
     P(z|d) &= \dfrac{\exp \beta_{d,z}}{\sum_{i=1}^k \exp \beta_{d,i}}
 \end{align}
 
-Through the covariance matrix $\Sigma$, the CTM model is therefore able to learn correlation between topics, and therefore to account for the fact that some topics are more likely to occur together within one document. Moreover, our intuition is that using CTM allows the derivation of more realistic topic-distribution for short texts such as abstracts, for which the small amounts of words only moderately inform the prior topic distribution. Most importantly, this model allows us to directly assess the level of independence between the topics derived by the model, which is important for assessing the autonomy of the contexts in which supersymmetry arises.
+Through the covariance matrix $\Sigma$, the CTM model is able to learn correlation between topics, and therefore to account for the fact that some topics are more likely to occur together within one document. Moreover, our intuition is that using CTM allows the derivation of more realistic topic-distribution for short texts such as abstracts, for which the small amounts of words only moderately inform the prior topic distribution. Most importantly, this model allows us to directly assess the level of independence between the topics derived by the model, which is important for assessing the autonomy of the contexts in which supersymmetry arises.
 
 The model is trained on $N=120,000$ articles randomly sampled from those between 1980-2020 that belong to any of the categories \texttt{Theory-HEP}, \texttt{Phenomenology-HEP}, \texttt{Experiment-HEP}, and also \texttt{Lattice} (a theoretical approach to HEP, with ties to both theory and phenomenology, and in which we expected supersymmetry to potentially arise as well). The vocabulary selection procedure and the procedure for choosing the hyper-parameters are described in detail in appendices \ref{appendix:data_selection} and \ref{appendix:hyper_parameter} respectively. Two methodological contributions can be highlighted. First, we included informative n-grams matching pre-defined syntactic patterns in the vocabulary in order to preserve more semantic information. Second, we made a prudent and balanced use of perplexity and topic coherence measures in order to recognize the advantages and limitations of both these kinds of measures for assessing the quality of topic models and choosing the best hyper-parameters. The procedure resulted in the extraction of 75 topics.
 
