@@ -268,7 +268,7 @@ The database is fed by an automatic aggregator that retrieves articles from mult
 
 Inspire then aggregates data from these sources with automated crawlers, and it performs manual curation for completion or error-correction\footnote{Stella Christodoulaki, ``Content Policy'', March 4th 2020, \url{https://help.inspirehep.net/knowledge-base/content-policy/}}, including author name disambiguation. This database has a strong yet untapped potential for quantitative analyses. However, only contents related to HEP are subject to a systematic effort of collection and curation, and the data should be used preferably in analyses which scope is limited to HEP, thereby making it unsuitable for, e.g., studying interactions between HEP and other fields of physics (e.g. condensed matter physics).%The database contains a significant fraction of Astrophysics papers; however, those are not representative of the field.
 
-The database includes data about the contents of the literature (title, summary, sometimes keywords), the authors (name, unique identifier, institutional affiliations), dates corresponding to different events related to each paper, associated experiments, references of the articles. The only data pertaining to the contents of the articles that are consistently available are titles and abstracts. Articles are categorized according to a classification scheme compatible with that of the arXiv pre-print platform. This scheme includes categories such as \texttt{Theory-HEP}, \texttt{Experiment-HEP}, \texttt{Phenomenology-HEP}, \texttt{Astrophysics}, etc. Categories of papers published on arXiv.org are extracted directly from the platform (where they are defined by the authors, while being subject  to moderation and controls). Categories of papers not published on arXiv.org are assigned manually by curators. In this paper, we rely mostly on three categories which entail most of the high-energy physics literature: \texttt{Theory-HEP}, \texttt{Phenomenology-HEP}, but also \texttt{Experiment-HEP}, which typically entails papers that report empirical results such as statistical analyses of experimental data. A portion of the articles between the years 1990 to 1995 were not categorized, which led to some issues with the data collection process, as described in Appendix \ref{appendix:collection}. For this reason, our longitudinal analyses will focus on later years, which does not prevent us from addressing our research questions. The analysis of subcultures spans over years 1980 to 2020. The years prior to 1980 could also have been interesting for this analysis as well, but the corresponding data was of lower quality.
+The database includes data about the contents of the literature (title, summary, sometimes keywords), the authors (name, unique identifier, institutional affiliations), dates corresponding to different events related to each paper, associated experiments, references of the articles. The only data pertaining to the contents of the articles that are consistently available are titles and abstracts. Articles are categorized according to a classification scheme compatible with that of the arXiv pre-print platform. This scheme includes categories such as \texttt{Theory-HEP}, \texttt{Experiment-HEP}, \texttt{Phenomenology-HEP}, \texttt{Astrophysics}, etc. Categories of papers published on arXiv.org are extracted directly from the platform (where they are defined by the authors, while being subject  to moderation and controls). Categories of papers not published on arXiv.org are assigned manually by curators. Categories of papers inherited from the ancestor of Inspire HEP (Spires) and absent from arXiv.org were derived according to a mapping between Spires' classification and the current arXiv-based classification. In this paper, we rely mostly on three categories which entail most of the high-energy physics literature: \texttt{Theory-HEP}, \texttt{Phenomenology-HEP}, but also \texttt{Experiment-HEP}, which typically entails papers that report empirical results such as statistical analyses of experimental data. A portion of the articles between the years 1990 to 1995 were not categorized, which led to some issues with the data collection process, as described in Appendix \ref{appendix:collection}. For this reason, our longitudinal analyses will focus on later years, which does not prevent us from addressing our research questions. The analysis of subcultures spans over years 1980 to 2020. The years prior to 1980 could also have been interesting for this analysis as well, but the corresponding data was of lower quality.
 
 
 \subsection{Social and semantic analysis of subcultures of high-energy physics}\label{section:method_subcultures}
@@ -544,6 +544,19 @@ the lack of categories means that selecting all HEP papers during the problemati
 
 % \subsection{Predicting categories}
 
+\subsection{\label{appendix:stability}Text-classifier performance stability}
+
+The categories (\texttt{Theory-HEP}, \texttt{Phenomenology-HEP} and \texttt{Experiment-HEP}) that we trained our classifier to predict have been assigned in different ways in the Inspire HEP database. Although the bulk of them were categorized based on arXiv's classification system, some papers were not, especially those published before arXiv established its dominance in the 1990s. It might be unclear whether these classification procedures are consistent. Therefore, in figure \ref{fig:stability}, we show that the performance of the text-classifier is nonetheless roughly stable throughout the time-period considered (1980--2020). The various classification procedures must therefore be somewhat consistent, as the constant weights of our classifier are able to capture the underlying linguistic identity of each of the corresponding scientific cultures. 
+
+\begin{figure}
+    \centering
+    \includegraphics{Fig8.eps}
+    \caption{Accuracy of the text-classifier from Section \ref{section:method_subcultures} as a function of the papers' years of publication. The accuracy is roughly constant across time for each of the three categories. Variations }
+    \label{fig:stability}
+\end{figure}
+
+
+
 \subsection{Topic model}
 
 
@@ -615,7 +628,7 @@ Below, we evaluate how topics compare with the classification of the literature.
 
 \begin{figure}
 \centering
-\includegraphics{Fig8.eps}
+\includegraphics{Fig9.eps}
 \caption{\label{fig:tsne}Semantic map extracted from the topic model, after applying a t-SNE transformation. Each dot represents a topic. Each topic is assigned the category, among theory, phenomenology and experiment, that is most associated with it. Correlated topics appear closer to each other. For each category, the density of topics along the x-axis is shown in the lower plot.}
 \end{figure}
 
@@ -638,7 +651,7 @@ We then normalize $n_{ij}$ by the amount of citations \textit{from} category $i$
 
 \begin{figure*}
     \centering
-    \includegraphics{Fig9.eps}
+    \includegraphics{Fig10.eps}
     \caption{\textbf{Origin of the references (citations) in the \gls{hep} literature}
     Each matrix element $\tilde{n}_{ij}$ represents the fraction of references from the x-axis category (columns) that target papers from the y-axis category (lines). For instance, 41\% of references in experimental papers refer to experimental papers. 15\% of citations from phenomenological papers refer to experimental papers. If these categories were completely hermetic, the matrix would equal the identity matrix, which is not the case.}
     \label{fig:cites_matrix}
