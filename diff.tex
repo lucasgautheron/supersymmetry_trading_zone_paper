@@ -1,7 +1,7 @@
 %!TEX TS-program = xelatex
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL first_submission.tex   Wed Apr  5 13:25:26 2023
-%DIF ADD main.tex               Wed Apr  5 13:18:37 2023
+%DIF DEL first_submission.tex   Wed Apr  5 15:07:57 2023
+%DIF ADD main.tex               Wed Apr  5 14:50:04 2023
 %!TEX encoding = UTF-8 Unicode
 
 % \documentclass[12pt,a4paper]{article}
@@ -747,13 +747,13 @@ the lack of categories means that selecting all HEP papers during the problemati
 
 \DIFaddbegin \subsection{\label{appendix:stability}\DIFadd{Text-classifier performance stability}}
 
-\DIFadd{The categories (}\texttt{\DIFadd{Theory-HEP}}\DIFadd{, }\texttt{\DIFadd{Phenomenology-HEP}} \DIFadd{and }\texttt{\DIFadd{Experiment-HEP}}\DIFadd{) that we trained our classifier (\ref{section:method_subcultures}) to predict have been assigned in different ways in the Inspire HEP database. Although a majority were categorized based on arXiv's classification system, some papers were not, especially those published before arXix was introduced (in the early 1990s). It might seem unclear whether these classification procedures are consistent and revealing of distinct underlying cultures. In order to demonstrate that it is the case, in Figure \ref{fig:stability}, we show that the performance of the text-classifier is nonetheless roughly stable throughout the period considered (1980--2020) by dividing the test set into five year periods. The various classification procedures must therefore be somewhat consistent; otherwise, the constant weights of our classifier would not be able to consistently capture the underlying linguistic identity of each of the corresponding scientific cultures. 
+\DIFadd{The categories (}\texttt{\DIFadd{Theory-HEP}}\DIFadd{, }\texttt{\DIFadd{Phenomenology-HEP}} \DIFadd{and }\texttt{\DIFadd{Experiment-HEP}}\DIFadd{) that we trained our classifier (\ref{section:method_subcultures}) to predict have been assigned in different ways in the Inspire HEP database. Although a majority were categorized based on arXiv's classification system, some papers were not, especially those published before arXix was introduced (in the early 1990s). It might seem unclear whether these classification procedures are consistent and revealing of distinct underlying cultures. In order to demonstrate that it is the case, in Figure \ref{fig:stability}, we show that the performance of the text-classifier is nonetheless roughly stable throughout the period considered (1980--2020). To this end, we subdivide this time-range in bins of five years and perform k-fold cross-validation using each five year bin as a validation set. Accuracy remains stable, and therefore, these various classification procedures, and the underlying identity of each of these subcultures, must remain somewhat consistent over this period.
 }
 
 \begin{figure}
     \centering
     \includegraphics{Fig8.eps}
-    \caption{\DIFaddFL{Accuracy of the text-classifier from Section \ref{section:method_subcultures} as a function of the papers' years of publication. Error-bars represent the 95\% confidence interval. Dashed lines show the accuracy of the baseline model (which may vary only due to variations in the frequency of each category, since the baseline model consistently predicts the most common class). The accuracy is roughly constant across time for each of the three categories, despite significant variations in the frequency of each class.}}
+    \caption{\DIFaddFL{Accuracy of the text-classifier from Section \ref{section:method_subcultures} as a function of the papers' years of publication. Error-bars represent the 95\% confidence interval. Dashed lines show the accuracy of the baseline model (which may vary only due to variations in the frequency of each category, since the baseline model always predicts the most common class). The accuracy is roughly constant across time for each of the three categories, despite significant variations in the frequency of each class.}}
     \label{fig:stability}
 \end{figure}
 
