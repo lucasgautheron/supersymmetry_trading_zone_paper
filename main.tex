@@ -12,11 +12,16 @@
 \usepackage[toc]{appendix}
 % \usepackage{natbib}
 \usepackage[backend=biber, style=apa, sortcites=false, uniquelist=false,natbib=true,doi=false,isbn=false,url=false,eprint=false,pagetracker, ibidtracker=constrict]{biblatex}
-\AtEveryBibitem{
-\clearfield{location}
-\clearfield{address}
-\clearfield{entrysubtype}
+\DeclareSourcemap{
+  \maps{
+    \map{
+      \step[fieldset=entrysubtype, null]
+      \step[fieldset=address, null]
+      \step[fieldset=location, null]
+    }
+  }
 }
+
 \addbibresource{references.bib}
 
 % \usepackage{authblk}
