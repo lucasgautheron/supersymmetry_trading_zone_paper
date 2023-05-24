@@ -4,8 +4,8 @@ main.pdf: main.tex references.bib Fig*.pgf Table*.tex
 	latexmk -pdf main.tex
 
 diff: references.bib Fig*.pgf Table*.tex
-	git show 5bca42a4a00517fa852fdda9f4d89110cb1ea876:main.tex > first_submission.tex
-	latexdiff first_submission.tex main.tex > diff.tex
+	git show bc428ac0a85df764f946694cd0f9d3dfa91fa77f:main.tex > second_submission.tex
+	latexdiff second_submission.tex main.tex > diff.tex
 	latexmk -pdf diff.tex
 
 Fig*.pgf:
