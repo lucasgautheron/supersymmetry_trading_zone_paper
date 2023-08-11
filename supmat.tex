@@ -1,0 +1,158 @@
+\documentclass[smallextended]{svjour3}
+
+\input{headers}
+
+\myexternaldocument{main}
+\usepackage{prettyref}
+\newrefformat{fig}{\ref{#1}}
+\newrefformat{table}{\ref{#1}}
+\newrefformat{appendix}{\ref{#1}}
+\newrefformat{sec}{\ref{#1}}
+\newrefformat{section}{\ref{#1}}
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thesection}{S\arabic{section}}
+
+
+\title{Supplementary materials for ``How research programs come apart''}
+
+\author{Lucas Gautheron \and Elisa Omodei}
+
+\date{}
+
+\journalname{Quantitative Science Studies}
+
+\begin{document}
+
+\maketitle
+
+% \appendix
+
+% \section{Appendices}
+\label{section:appendix}
+
+\section{Data collection}
+\label{appendix:collection}
+
+Our goal was to collect the whole HEP literature from 1980 to 2020 from the public Inspire HEP API \citep{InspireAPI}. For that, we collected metadata for all articles through automated search requests, category per category, and year per year. This strategy was intended to abide with the limitations of the API, in terms of matching entries per search request. However, it appeared that many articles in years 1990 to 1995 were not categorized, and therefore our collection strategy missed many HEP articles from this period. In order to recover these articles, we gathered all articles that were referenced in publications collected through the first batch but which were missing. This methods fails to recover articles that were not cited in any article from the first batch. More importantly, 
+the lack of categories means that selecting all HEP papers during the problematic time period will require unlabeled articles to be manually or automatically classified. Although there are ways to circumvent these issues and to assess their potential implications, we have decided to narrow down several analyses to years 2001 onwards in the present work.
+
+% \section{Predicting categories}
+
+\section{\label{appendix:stability}Text-classifier performance stability}
+
+The categories (\texttt{Theory-HEP}, \texttt{Phenomenology-HEP} and \texttt{Experiment-HEP}) that we trained our classifier (\ref{section:method_subcultures}) to predict have been assigned in different ways in the Inspire HEP database. Although a majority were categorized based on arXiv's classification system, some papers were not, especially those published before arXix was introduced (in the early 1990s). It might seem unclear whether these classification procedures are consistent and revealing of distinct underlying cultures. In order to demonstrate that it is the case, in Figure \prettyref{fig:stability}, we show that the performance of the text-classifier is nonetheless roughly stable throughout the period considered (1980--2020). To this end, we subdivide this time-range in bins of five years and perform k-fold cross-validation using each five year bin for the validation set (and the papers from the other bins for the training set). Accuracy remains high and approximately stable over the years 1980 to 2020; therefore, these various classification procedures, and the underlying identity of each of these subcultures, must be rather consistent over this period.
+
+\begin{figure}
+    \centering
+    \includegraphics{Fig8.eps}
+    \caption{Accuracy of the text-classifier from Section \ref{section:method_subcultures} as a function of the papers' years of publication. Error-bars represent the 95\% confidence interval. Dashed lines show the accuracy of the baseline model (which may vary only due to variations in the frequency of each category, since the baseline model always predicts the most common class). The accuracy is roughly constant across time for each of the three categories, despite significant variations in the frequency of each class.}
+    \label{fig:stability}
+\end{figure}
+
+
+
+\section{Topic model}
+
+
+\subsection{\label{appendix:data_selection}Data and vocabulary selection}
+
+The model is trained on $N=120,000$ articles randomly sampled from those in the 1980-2020 period that belong to any of the categories \texttt{Theory-HEP}, \texttt{Phenomenology-HEP}, \texttt{Experiment-HEP}, and \texttt{Lattice}. Titles and abstracts of each papers are concatenated in order to maximize the textual content used for training. Very short texts (less than 100 characters) are removed.
+
+Before applying the model, we performed a number of pre-processing steps on the abstracts with the goal of maximizing the amount of useful information in the training data. This procedure, largely inspired from \citealt{omodei_tel-01097702} and implemented with the use of the NLTK library \citep{nltk}, is as follows:
+
+\begin{itemize}
+    \item Tokens (words separated by punctuation or spaces) are extracted from the text and transformed to lower-case.
+    \item All single nouns and adjectives are retrieved from these tokens.
+    \item We also retrieve all n-grams that match specific syntactic patterns (e.g. ``adjective+noun+noun'', such as ``supersymmetric standard model'', ``effective field theory'').
+    \item Single words are lemmatized, i.e. they are normalized to their root (e.g. ``symmetries'' becomes ``symmetry'').
+    \item Words and expressions that occur less than 20 times are removed.
+\end{itemize}
+
+First, these steps allow us to reduce noise by removing words that convey little to no information about the topics of the articles (such as stop words). Second, extracting n-grams that matching certain syntactic patterns allows us to preserve some information about the relative position of words within the abstracts -- which CTM do not do otherwise -- while taking advantage of our prior knowledge of the documents' language. For instance, the word ``dark'' may convey different meanings depending on whether it occurs immediately before the word ``matter'', or, alternatively, ``energy''; similarly, the occurrence of the expression ``dark matter'' in a text conveys more information than the simultaneous occurrence of ``dark'' and ``matter'' without more knowledge about their relative position.
+
+As a result of this procedure, the vocabulary contains $V=$ 18,658 ``words'', with 58 words per article on average.
+
+\subsection{\label{appendix:hyper_parameter}Hyper-parameters}
+
+The implementation of the CTM by Tomotopy \citep{tomotopy} has three hyper-parameters: the amount of topics $k$, an $\vec{\alpha}$ parameter that controls the sparsity of the document-topic distribution ($\theta_{d,i}$), and a $\vec{\eta}$ parameter that controls the sparsity of the topic-word distribution (the vocabulary associated to each topic).
+For choosing the amount of topics $k$, we considered three values that seemed acceptable in terms of interpretability and compliance with the values from the literature: 50, 75 and 100.
+We assumed $\vec{\alpha}$ and $\vec{\eta}$ to be symmetric, i.e. $\alpha_1 = \alpha_k = \alpha$ and $\eta_1 = ... = \eta_V = \eta$\footnote{This is common in the literature, but this choice is disputable, cf. \citealt{Wallach2009}. One implication of symmetric priors is that topics must have comparable probabilities. This also has an impact on the meaning of topics.}. We considered  $\alpha \in \{10^{-2},10^{-1},1\}$ and $\eta \in \{10^{-3},10^{-2},10^{-1}\}$, according to values encountered in the literature.
+We then trained the model for each triplet of $k$, $\alpha$ and $\eta$ among the candidate values. We rejected all triplets that led to significant overfitting, by comparing the perplexity\footnote{Perplexity is the exponential of the average log-likelihood per word, cf. \citealt{Blei2003}. It measures the improbability of a corpus according to a given model.} obtained for the training corpus and that obtained by applying the trained model to a validation set of abstracts unseen during training.
+Although \citet{Chang2009} have shown that perplexity could be negatively correlated to human judgments about the interpretability of the topics recovered by topic models, we believe it is a suitable metric to discard models that fail to capture meaningful regularities in the data, which is the case of models that show overfitting. Among the remaining models, we then selected the two models with the highest normalized pointwise mutual information coherence, a coherence metric frequently used to assess the consistency of topic models \citep{hoyle2021is}. Topic coherence metrics in general, as stressed by \citeauthor{hoyle2021is}, are not very strongly correlated with human judgments about the quality of a model; however, we believe they may be useful to discard certain models in order to limit the amount of those that should be inspected manually (since manual inspection is time-consuming and quite subjective). We finally inspect manually the two models with the highest coherence measure, and choose the one with $k=75$, $\alpha=0.1$ and $\eta=0.001$. Our preference for this model stemmed from the fact that it contained more topics than the other remaining model, and that these more numerous topics seemed reasonably consistent.
+
+\subsection{Validation}
+\label{appendix:validation}
+
+Since the model infers document-topic distributions and topic-word distributions, we would like to assess the validity of these metrics, i.e. ``their ability to measure what they purportedly measure'' \citep[p.~3240]{Bannigan2009}. In order to simultaneously assess both measures, we designed the following protocol. First, we derived the \gls{pacs} categories $c$ that were the most correlated to each topic $z$ (this approach is in a sense comparable to that employed in \citealt{Griffiths2004}, who extracted the topics that were more strongly associated with PNAS categories). For that, we listed the categories $c$ that maximize the pointwise mutual information with each topic $z$ according to:
+
+\begin{equation}
+    \label{eq:pmi_expression}
+    \mathrm{pmi}(z,c) = \log \dfrac{p(z|c)}{p(z)}% = \log \left( \dfrac{\displaystyle\sum_{d \in c} \theta_{d,z}}{\displaystyle\sum_{d} \theta_{d,z}} \times \dfrac{D}{D_c}\right)
+\end{equation}
+
+Where $p(z)$ is the marginal probability of the topic $z$, and $p(z|c)$ the probability that a word in a document belongs to a topic $z$ given that the document was assigned the PACS category $c$. Thefore, $\mathrm{pmi}(z,c)$ measures the increase in probability of a given topic provided that a PACS category is present. The 5 categories most correlated to each topic are given in table \prettyref{table:full_topics_pacs_pmi}, which helped inform our choice for each tpic label, in complement to their top-words.
+
+Then, we submitted the lists of PACS categories thus constitued to a human task derived from the methodology of \citet{Bennett2021}, as follows:
+
+\begin{enumerate}
+    \item We draw at random a topic $z_1$ with a probability equal to its marginal probability 
+    \item We draw at random 5 PACS categories $c_1,...,c_5$ among the 10 most correlated to $z_1$, as described above.
+    \item Then, we do any of the following, with equal probability $1/2$:
+    \begin{enumerate}
+        \item We draw at random another topic $z_2\neq z_1$ with probability $p(z_2)\over 1-p(z_1)$, and we pick at random 5 PACS categories $c_6,...,c_{10}$ among those most correlated with it.
+        \item Alternatively, we draw  $c_6,...,c_{10}$ from the 5 remaining PACS categories most associated to $z_1$
+    \end{enumerate}
+    \item We submit $c_1, ..., c_5$ and $c_6, ..., c_{10}$ to an expert unaware of the model. The expert is asked to guess whether the two lists of 5 categories were drawn from one and same general topic, or whether they were drawn from two separate topics.
+    \item The procedure is repeated a certain amount of times. The final score is the fraction of correct responses.
+\end{enumerate}
+
+The rationale for this method is that good scores should only be achievable provided the topics are rather coherent, and that the document-topic distributions $\theta_{d,i}$ are reasonably accurate. The final average score is 0.74 for 100 guesses from two HEP PhD students, which is significantly better than a random baseline (0.5). This shows that, to some extent, the topic distributions derived for each article correlate with \gls{pacs} categories that are rather coherent with each other.
+
+\subsection{\label{appendix:topics}Topics}
+
+% \clearpage
+% \onecolumn
+
+\fontsize{6}{7}\selectfont\input{Table4}\normalsize
+\fontsize{6}{7}\selectfont\input{Table5}\normalsize
+
+\subsection{\label{appendix:topics_categories}Topics and their correlation with categories}
+
+Below, we evaluate how topics compare with the classification of the literature. For that, we generated a 2D representation of the semantic space by applying a t-SNE transformation \citep{Maaten2008} on the distance matrix $1-R_{ij}$, where $R_{ij}$ is the correlation matrix for the 75 topics from the CTM. The t-SNE transformation aims to reduce dimensionality (from 75 to 2) while preserving distances, such that highly correlated topics should appear close to each other on the resulting 2D map. We then colored each topic according to the category (among theory, phenomenology and experiment) that has the strongest association (normalized pointwise mutual information) with this topic. The graph was then rotated such that the x-axis would explain most of the variance in these three categories. Topics related to supersymmetry were emphasized and labeled. The resulting map is shown in Figure \prettyref{fig:tsne}.
+
+\begin{figure}
+\centering
+\includegraphics{Fig9.eps}
+\caption{\label{fig:tsne}Semantic map extracted from the topic model, after applying a t-SNE transformation. Each dot represents a topic. Each topic is assigned the category, among theory, phenomenology and experiment, that is most associated with it. Correlated topics appear closer to each other. For each category, the density of topics along the x-axis is shown in the lower plot.}
+\end{figure}
+
+Although the t-SNE transformation does not yield very stable results, it generally appears (as in this figure) that topics most associated with a given category (e.g. theory) appear closer to each other, such that these three categories explain part of the variance in the semantic space. Second, in this representation, the distinction between phenomenological supersymmetry and theoretical supersymmetry is supported by the emergence of two separate clusters of supersymmetry-related topics.
+
+
+\section{\label{appendix:phenomenology_centrality}Validity of the citation network for exploring the trading zone}
+
+Below, we support the relevance of the citation network as a means of exploring trading zones between scientific cultures by showing it can be used to recover known facts, in particular i) that theory and experiment in HEP do not communicate directly and ii) that phenomenology channels most exchanges across them.
+
+We build a citation network where each node is one paper of the literature and the edge between nodes $x$ and $y$ is assigned a weight $w_{x,y}=1$ if $x$ cites $y$ and 0 otherwise. From this we can define the amount of citations of papers from the category $i$ to a paper from the category $j$ as: 
+
+\begin{equation}
+    \label{eq:cite_matrix}
+    n_{ij} = \sum_{x\in i, y\in j} \dfrac{w_{xy}}{(\sum_c \mathds{1}_c(x))(\sum_c \mathds{1}_c(y))} 
+\end{equation}
+
+Where $\mathds{1}_c(x)=1$ if $x$ belongs to $c \in \{$Experiment, Phenomenology, Theory$\}$, and 0 otherwise. 
+We then normalize $n_{ij}$ by the amount of citations \textit{from} category $i$, thus yielding the normalized matrix $\tilde{n}_{ij}$. By construction, $0\leq \tilde{n}_{ij}\leq 1$ is the effective fraction of references from papers of category $i$ to papers of category $j$. The matrix is built from the citation network between 2001 and 2019. We then verify that $\tilde{n}_{ii}$ is high (papers mostly cite papers from the same category); and that for cross-culture citations ($i\neq j$), $\tilde{n}_{ij} \ll 1$ unless $i$ or $j$ is ``phenomenology''; i.e., ``trading zones'' in the field occur around phenomenology. Evaluating the fraction of citations from papers of a category $i$ that target papers from a category $j$ yields the matrix in Figure \prettyref{fig:cites_matrix}. In this matrix, borrowing the trade metaphor from \citet{Yan2013}, non-diagonal elements represent ``imports'' (references to publications from other subcultures) and diagonal elements measure the ``self-dependence'' of each subculture. The results confirm that most citations occur within categories, emphasizing the relative autonomy of each of these subcultures including phenomenology -- it is less obvious for experimental papers, which are much more scarce then the others, and cannot cite themselves as much. Moreover the results confirm that most trades involve phenomenology: cross-citations between purely theoretical and experimental papers are very rare ($\sim$1\% of their references). Overall, ``theory'' is highly self-reliant.
+
+\begin{figure*}
+    \centering
+    \includegraphics{Fig10.eps}
+    \caption{\textbf{Origin of the references (citations) in the \gls{hep} literature}
+    Each matrix element $\tilde{n}_{ij}$ represents the fraction of references from the x-axis category (columns) that target papers from the y-axis category (lines). For instance, 41\% of references in experimental papers refer to experimental papers. 15\% of citations from phenomenological papers refer to experimental papers. If these categories were completely hermetic, the matrix would equal the identity matrix, which is not the case.}
+    \label{fig:cites_matrix}
+\end{figure*}
+
+\printbibliography
+
+\end{document}
