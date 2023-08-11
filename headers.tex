@@ -1,0 +1,82 @@
+
+% \documentclass[12pt,a4paper]{article}
+\RequirePackage{tikz}
+% \documentclass[sn-apacite,xelatex]{sn-jnl}
+% \usepackage{program}
+% \catcode`\|=12\relax
+
+\usepackage[margin=1in]{geometry}
+\usepackage[toc]{appendix}
+% \usepackage{natbib}
+\usepackage[backend=biber, style=apa, sortcites=false, uniquelist=false,natbib=true,doi=false,isbn=false,url=false,eprint=false,pagetracker, ibidtracker=constrict]{biblatex}
+\DeclareSourcemap{
+  \maps{
+    \map{
+      \step[fieldset=entrysubtype, null]
+      \step[fieldset=address, null]
+      \step[fieldset=location, null]
+    }
+  }
+}
+
+\addbibresource{references.bib}
+
+% \usepackage{authblk}
+% \usepackage[hyperref]{acl2020}
+\usepackage[colorlinks=true,citecolor=blue]{hyperref}
+% \usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+% \usepackage{subcaption}
+% \usepackage{float}
+
+\usepackage{tikz}
+% \usepackage{tikzscale}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes,positioning,calc}
+
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{bbm}
+\usepackage{dsfont}
+% \usepackage[utf8x]{inputenc}
+\usepackage{textcomp}
+\usepackage{textgreek}
+\usepackage[french,english]{babel}
+\usepackage{latexsym}
+\usepackage{url}  %Required
+\usepackage{graphicx}  %Required
+\frenchspacing  %Required
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\renewcommand{\UrlFont}{\ttfamily\small}
+
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makeglossaries
+\renewcommand*{\glsgroupskip}{}
+
+\input{acronyms_en}
+
+
+%%% HELPER CODE FOR DEALING WITH EXTERNAL REFERENCES
+\usepackage{xr}
+\makeatletter
+\newcommand*{\addFileDependency}[1]{
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{
+    \externaldocument{#1}
+    \addFileDependency{#1.tex}
+    \addFileDependency{#1.aux}
+}
+%%% END HELPER CODE
+
