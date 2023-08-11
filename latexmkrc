@@ -1,3 +1,5 @@
+$pdflatex=q/xelatex -synctex=1 %O %S/;
+
 add_cus_dep( 'tex', 'aux', 0, 'makeexternaldocument' );
 
 sub makeexternaldocument {

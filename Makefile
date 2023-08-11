@@ -1,7 +1,7 @@
 all: main.pdf
 
 main.pdf: main.tex references.bib Fig*.pgf Table*.tex
-	latexmk -pdf main.tex
+	latexmk -f -xelatex -interaction=nonstopmode -pdf main.tex
 
 diff: references.bib Fig*.pgf Table*.tex
 	git show bc428ac0a85df764f946694cd0f9d3dfa91fa77f:main.tex > second_submission.tex
