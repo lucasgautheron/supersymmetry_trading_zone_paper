@@ -1,4 +1,5 @@
-\documentclass[smallextended]{svjour3}
+% \documentclass[smallextended]{svjour3}
+\documentclass[]{article}
 
 \input{headers}
 
@@ -21,7 +22,7 @@
 
 \date{}
 
-\journalname{Quantitative Science Studies}
+% \journalname{Quantitative Science Studies}
 
 \begin{document}
 
@@ -92,7 +93,7 @@ Since the model infers document-topic distributions and topic-word distributions
     \mathrm{pmi}(z,c) = \log \dfrac{p(z|c)}{p(z)}% = \log \left( \dfrac{\displaystyle\sum_{d \in c} \theta_{d,z}}{\displaystyle\sum_{d} \theta_{d,z}} \times \dfrac{D}{D_c}\right)
 \end{equation}
 
-Where $p(z)$ is the marginal probability of the topic $z$, and $p(z|c)$ the probability that a word in a document belongs to a topic $z$ given that the document was assigned the PACS category $c$. Thefore, $\mathrm{pmi}(z,c)$ measures the increase in probability of a given topic provided that a PACS category is present. The 5 categories most correlated to each topic are given in table \prettyref{table:full_topics_pacs_pmi}, which helped inform our choice for each tpic label, in complement to their top-words.
+Where $p(z)$ is the marginal probability of the topic $z$, and $p(z|c)$ the probability that a word in a document belongs to a topic $z$ given that the document was assigned the PACS category $c$. Thefore, $\mathrm{pmi}(z,c)$ measures the increase in probability of a given topic provided that a PACS category is present. The 5 categories most correlated to each topic are given in table \prettyref{table:full_topics_pacs_pmi}, which helped inform our choice for each topic label, in complement to their top-words.
 
 Then, we submitted the lists of PACS categories thus constitued to a human task derived from the methodology of \citet{Bennett2021}, as follows:
 
